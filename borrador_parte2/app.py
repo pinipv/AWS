@@ -1,36 +1,39 @@
 from flask import Flask, render_template, request
 import pickle
 import numpy as np
-import os
 
 app = Flask(__name__)
 
 # modelo de predicción
 model = pickle.load(open("!! Aquí poner nombre fichero .pkl con el modelo de predicción", 'rb'))
 
-# Homepage
+# Homepage 
 @app.route("/", methods = ["GET"]) # ruta
-def man():
+def index():
     return render_template("homepage.html") # aquí ponemos el html con la homepage
 
-# Página insertar datos
-@app.route("/data", methods=["POST"]) # ruta
-def data():
+# Página insertar datos 
+@app.route("/data_input", methods=["POST"]) # ruta
+def data_input():
     return render_template("data_page.html") # aquí ponemos el html con la pg donde insertamos los datos para predicción
 
-# Página predicción --> esto hay que ver cómo es: NO CLASIFICACIÓN --> NÚMEROS
-@app.route("/predict", methods=["POST"]) # ruta
-def home():
+#
+@app.route('/predict', methods=['GET', 'POST'])
+def predict():
+    # Usuario introduce los parámetros
+    param_1 = request.form['parametro1']
+    param_2 = request.form['parametro2']
+    param_3 = request.form['parametro3']
+    param_4 = request.form['parametro4']
+    param_5 = request.form['parametro5']
+    param_6 = request.form['parametro6']
+    # array para predicción
+    arr = np.array([[param_1, param_2, param_3, param_4, param_5, param_6]])
+    arr = arr.astype(np.float64)
+    # predicción
+    pred = model.predict([arr])
 
-    # Esto hay que cambiarlo ---> son los 4 datos de las flores para predecir que tipo es:
-    data1 = request.form['a']
-    data2 = request.form['b']
-    data3 = request.form['c']
-    data4 = request.form['d']
-    arr = np.array([[data1, data2, data3, data4]]) # los 4 datos de las flores
-    pred = model.predict(arr)   # el modelo predice según los datos que insertamos
-    return render_template("after.html", data = pred) 
-
+    return render_template('predict.html', data=int(pred)) # aquí vamos a la página con la predicción
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True) # debug = False antes de despliegue webservice !?
