@@ -11,14 +11,14 @@ model = pickle.load(open("!! Aquí poner nombre fichero .pkl con el modelo de pr
 # Homepage
 @app.route("/", methods = ["GET"]) # ruta
 def man():
-    return render_template("homepage.html")
+    return render_template("homepage.html") # aquí ponemos el html con la homepage
 
 # Página insertar datos
 @app.route("/data", methods=["POST"]) # ruta
 def data():
-    return render_template("data_page.html")
+    return render_template("data_page.html") # aquí ponemos el html con la pg donde insertamos los datos para predicción
 
-# Página predicción
+# Página predicción --> esto hay que ver cómo es: NO CLASIFICACIÓN --> NÚMEROS
 @app.route("/predict", methods=["POST"]) # ruta
 def home():
 
