@@ -18,10 +18,10 @@ def data_input():
     return render_template("data_page.html") # aquí ponemos el html con la pg donde insertamos los datos para predicción
 
 # Página con la predicción
-@app.route('/predict/', methods=['GET', 'POST'])
+@app.route('/data_input/predict/', methods=['GET', 'POST']) 
 def predict():
 
-    # Usuario introduce los parámetros
+    # Parámetros del usuario
     param_1 = request.form['parametro1']
     param_2 = request.form['parametro2']
     param_3 = request.form['parametro3']
