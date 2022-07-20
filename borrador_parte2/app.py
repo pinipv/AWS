@@ -47,8 +47,11 @@ def predict():
 
         data= np.array([seasons[season.lower()],weathers[weather.lower()], int(temp), int(humidity),int( year),int(month), int(day),int( hour)])
         model = load_model()
-        pred= model.predict(data)
-        return render_template('predict.html', data=int(pred))
+        #Hago el reshape ya que al predecir una sola instancia por fallo y error solo me ha funcionado asi
+        pred= model.predict(data.reshape(1,-1))
+        #EL modelo devuelve una lista, recojo la primera y unica posicion y lo redondeo al mayor para que de un numero entero
+        final_pred= round(pred[0]) 
+        return render_template('predict.html', data=int(final_pred))
 
 '''def predict():
 
