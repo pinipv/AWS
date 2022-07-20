@@ -13,12 +13,6 @@ def load_model():
 app = Flask(__name__) 
 
 # Homepage
-@app.route("/", methods = ['GET']) # ruta
-def home():
-    return "Hello world!"
-
-'''
-# Homepage
 @app.route("/", methods = ['POST', 'GET']) # ruta
 def home():
     return render_template("home.html") # aquí ponemos el html con la homepage
@@ -60,7 +54,7 @@ def after():
         final_pred= round(pred[0]) 
         print(final_pred)
         return render_template("after.html", data=int(final_pred))
-    '''
+
 # ver si host="0.0.0.0" podría solucionar problema  
 if __name__ == "__main__":
     app.run(debug=False) # MUY IMPORTANTE!!!!! debug = False antes de despliegue a servidor público
