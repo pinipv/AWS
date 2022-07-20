@@ -12,19 +12,13 @@ def load_model():
 
 app = Flask(__name__) 
 
-# Homepage --> PRUEBA LAURA - HAY QUE CAMBIAR CON LO COMENTADO
-@app.route('/', methods = ['GET'])
-def home():
-    return "Hello world!"
-
-'''
-@app.route("/", methods = ["GET"]) # ruta
+# Homepage
+@app.route("/", methods = ['POST', 'GET']) # ruta
 def home():
     return render_template("home.html") # aquí ponemos el html con la homepage
-'''    
 
 # Página insertar datos 
-@app.route("/data_input/", methods=["GET"]) # ruta
+@app.route("/data_input/", methods=['POST', 'GET']) # ruta
 def prediction():
     return render_template("prediction.html") # aquí ponemos el html con la pg donde insertamos los datos para predicción
 
@@ -61,6 +55,6 @@ def after():
         print(final_pred)
         return render_template("after.html", data=int(final_pred))
     
-  
+# ver si host="0.0.0.0" podría solucionar problema  
 if __name__ == "__main__":
     app.run(debug=False) # MUY IMPORTANTE!!!!! debug = False antes de despliegue a servidor público
