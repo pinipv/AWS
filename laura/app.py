@@ -3,7 +3,7 @@ import pickle
 import numpy as np
 
 def load_model():
-    with open(r'models\finished_model_arima_multiple.model', "rb") as archivo_entrada:
+    with open(r'borrador_parte2\modelos\rf_model.pkl', "rb") as archivo_entrada:
         model = pickle.load(archivo_entrada)
         # print(list_models)
     return model
@@ -11,7 +11,7 @@ def load_model():
 app = Flask(__name__)
 
 # modelo de predicción
-model = pickle.load(open("!! Aquí poner nombre fichero .pkl con el modelo de predicción", 'rb'))
+#model = pickle.load(open("!! Aquí poner nombre fichero .pkl con el modelo de predicción", 'rb'))
 
 # Homepage 
 @app.route("/", methods = ["GET"]) # ruta

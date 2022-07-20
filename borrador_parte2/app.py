@@ -49,7 +49,7 @@ def predict():
         model = load_model()
         #Hago el reshape ya que al predecir una sola instancia por fallo y error solo me ha funcionado asi
         pred= model.predict(data.reshape(1,-1))
-        #EL modelo devuelve una lista, recojo la primera y unica posicion y lo redondeo al mayor para que de un numero entero
+        #EL modelo devuelve una lista, recojo la primera y unica posicion y lo redondeo al mayor para que de un numero
         final_pred= round(pred[0]) 
         return render_template('predict.html', data=int(final_pred))
 
