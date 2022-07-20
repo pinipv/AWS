@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import Flask, render_template, request
 import pickle
 import numpy as np
@@ -11,13 +12,19 @@ def load_model():
 
 app = Flask(__name__) 
 
-# Homepage 
-@app.route("/", methods = ["GET", "POST"]) # ruta
+# Homepage --> PRUEBA LAURA - HAY QUE CAMBIAR CON LO COMENTADO
+@app.route('/', methods = ['GET'])
+def home():
+    return "Hello world!"
+
+'''
+@app.route("/", methods = ["GET"]) # ruta
 def home():
     return render_template("home.html") # aquí ponemos el html con la homepage
+'''    
 
 # Página insertar datos 
-@app.route("/data_input/", methods=["GET", "POST"]) # ruta
+@app.route("/data_input/", methods=["GET"]) # ruta
 def prediction():
     return render_template("prediction.html") # aquí ponemos el html con la pg donde insertamos los datos para predicción
 
