@@ -55,15 +55,19 @@
 
               <form method="POST" , action="{{url_for('prediction')}}">
         <b>
-            
-          First value :
-          <input type="text" , name="a" , placeholder="enter 1" /> 
-          Second value :
-          <input type="text" , name="b" , placeholder="enter 2" /> 
-          Third value :
-          <input type="text" , name="c" , placeholder="enter 3" /> 
-          Fourth value :
-          <input type="text" , name="d" , placeholder="enter 4" />
+
+          Season :
+          <input type="text" , name="season" , placeholder="spring, summer, fall, winter " /> 
+          Weather :
+          <input type="text" , name="weather" , placeholder="clear, few clouds, partly cloudy" /> 
+          Temperature :
+          <input type="number" , name="temperature" , placeholder="Temperature" /> 
+          Humedity :
+          <input type="text" , name="humedity" , placeholder="Humedity" />
+          Date :
+          <input type="date" ,name="date">
+          Hour :
+          <input type="number" , name="hour" , placeholder="Hour of rent", min="0", max="24" />
         </b>
         <br>
               <button value="predict!" type="submit" class="cybr-btn">
