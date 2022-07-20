@@ -2,6 +2,12 @@ from flask import Flask, render_template, request
 import pickle
 import numpy as np
 
+def load_model():
+    with open(r'models\finished_model_arima_multiple.model', "rb") as archivo_entrada:
+        model = pickle.load(archivo_entrada)
+        # print(list_models)
+    return model
+
 app = Flask(__name__)
 
 # modelo de predicción
@@ -20,6 +26,31 @@ def data_input():
 # Página con la predicción
 @app.route('/data_input/predict/', methods=['GET', 'POST']) 
 def predict():
+        seasons={'spring':0, 
+                'summer':1, 
+                'fall':2,
+                'winter':3
+                }
+        weathers={'clear':0, 
+                    'few clouds':1, 
+                    'partly cloudly':2
+        }
+
+        season = request.form['season']
+        weather = request.form['weather']
+        temp = request.form['temp']
+        humidity = request.form['humidity']
+        date = request.form['date']
+        hour = request.form['hour']
+
+        year, month, day = date.split('-')
+
+        data= np.array([seasons[season.lower()],weathers[weather.lower()], int(temp), int(humidity),int( year),int(month), int(day),int( hour)])
+        model = load_model()
+        pred= model.predict(data)
+        return render_template('predict.html', data=int(pred))
+
+'''def predict():
 
     # Parámetros del usuario
     param_1 = request.form['parametro1']
@@ -36,6 +67,10 @@ def predict():
     pred = model.predict([arr])
 
     return render_template('predict.html', data=int(pred)) # aquí vamos a la página con la predicción
+'''
 
+    
+
+    
 if __name__ == "__main__":
     app.run(debug=True) # MUY IMPORTANTE!!!!! debug = False antes de despliegue a servidor público
