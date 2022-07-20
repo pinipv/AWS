@@ -53,7 +53,7 @@
               </svg>
             </div>
 
-              <form method="POST" , action="{{url_for('after')}}">
+        <form method="POST" , action="{{url_for('after')}}">
         <b>
 
           Season :
@@ -64,10 +64,11 @@
           <input type="number" , name="temperature" , placeholder="Temperature" /> 
           Humedity :
           <input type="text" , name="humedity" , placeholder="Humedity" />
-          Date :
-          <input type="date" ,name="date"/>
           Hour :
           <input type="number" , name="hour" , placeholder="Hour of rent", min="0", max="24" />
+          Date :
+          <input type="date" , name="date"/>
+          
         </b>
         <br>
               <button value="predict!" type="submit" class="cybr-btn">
@@ -75,7 +76,7 @@
                 <span aria-hidden class="cybr-btn__glitch">AI_</span>
                 <span aria-hidden class="cybr-btn__tag">ML</span>
               </button>
-            </form>
+        </form>
       <!-- <img src="static\flower1.jpg" alt="flower" /> -->
     </center>
   </body>

@@ -4,7 +4,7 @@ import numpy as np
 
 # modelo de predicción
 def load_model():
-    with open(r"\modelos\rf_model.pkl", "rb") as archivo_entrada:
+    with open(r"./rf_model.pkl", "rb") as archivo_entrada:
         model = pickle.load(archivo_entrada)
         # print(list_models)
     return model
@@ -24,6 +24,7 @@ def prediction():
 # Página con la predicción
 @app.route('/data_input/predict/', methods=['POST']) 
 def after():
+    
         seasons={'spring':0, 
                 'summer':1, 
                 'fall':2,
@@ -33,15 +34,16 @@ def after():
                     'few clouds':1, 
                     'partly cloudly':2
         }
-
+        
         season = request.form['season']
         weather = request.form['weather']
         temp = request.form['temperature']
         humidity = request.form['humedity']
-        date = request.form['date']
         hour = request.form['hour']
+        fecha = request.form['date']
+        
 
-        year, month, day = date.split('-')
+        year, month, day = fecha.split('-')
 
         data= np.array([seasons[season.lower()],weathers[weather.lower()], int(temp), int(humidity),int( year),int(month), int(day),int( hour)])
         model = load_model()
@@ -49,7 +51,9 @@ def after():
         pred= model.predict(data.reshape(1,-1))
         #EL modelo devuelve una lista, recojo la primera y unica posicion y lo redondeo al mayor para que de un numero
         final_pred= round(pred[0]) 
+        print(final_pred)
         return render_template("after.html", data=int(final_pred))
+    
   
 if __name__ == "__main__":
     app.run(debug=True) # MUY IMPORTANTE!!!!! debug = False antes de despliegue a servidor público
