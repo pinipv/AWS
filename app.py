@@ -63,4 +63,4 @@ def after():
     
   
 if __name__ == "__main__":
-    app.run(debug=True) # MUY IMPORTANTE!!!!! debug = False antes de despliegue a servidor público
+    app.run(debug=False) # MUY IMPORTANTE!!!!! debug = False antes de despliegue a servidor público
