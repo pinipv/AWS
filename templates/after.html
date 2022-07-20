@@ -1,33 +1,50 @@
 <html>
+    <head>
+        <title>Prediction</title>
+    </head>
+    <style>
+        *{
+            padding:0;
+            margin:0
+        }
+        body{
+            display: inline-flex;
+            width: 100%;
+        }
+        #cuerpo{
+            width: 50%;
+            background-color: black;
+            color:white;
+            font-size: 80px;
+            
+        }
+        #cuerpo h3{
+            margin-left:50px;
+            margin-top: 500px;
+            font-size: 30px;
+        }
+        #cuerpo h1{
+            margin-left:50px;
+            color:yellow
+        }
 
-<body bgcolor=#a3cfb4>
+        #imagen{
+            width: 50%;
 
-    <center>
-    
-    <h1>Las bicis predecidas son {{ data }}</h1>
-        <h1>  PREDICTION :  </h1>
-    
-    {%if data == 0%}
-    <h1>Iris-setosa</h1>  
-    <img src='..\static\setosa.jpg'>  
+        }
+        #imagen img{
+            height: 900px;
+        }
+    </style>
 
-    {%else%}
-    <h1>Iris-versicolor</h1>
-    <img src='..\static\verci.jpg'>
-    
-    {%endif%}
-
-        <br><br>
-    <a href='/'>go back to home page</a>
-
-    </center>
-
-</body>
+    <body>
+        <div id="cuerpo">
+            <h3>Se alquilarán</h3>
+            <h1>{{ data }}</h1>
+        </div>
+        <div id="imagen">
+            <img src="{{ url_for('static' ,filename = 'patron_bici.jpeg') }}">
+        </div>
+    </body>
 
 </html>
-
-
-
-
-
-
